@@ -12,7 +12,7 @@ unsigned long previousMillis = 0;
 
 void setup() 
 {  
-  FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS); 
+  FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS); 
 }
 
 void loop() 
@@ -31,7 +31,7 @@ int currentPinState()
     previousMillis = currentMillis;
 
     if (pinState == CRGB::Black) {
-      pinState = CRGB::BlueViolet;
+      pinState = CRGB::BlueViolet; // pinState = 0x007F00 [VERMELHO]
     } else {
       pinState = CRGB::Black;
     }
