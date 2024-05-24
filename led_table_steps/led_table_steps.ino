@@ -7,19 +7,31 @@
 #define executionTime 3000
 
 CRGB leds[NUM_LEDS];
+int ledsCurrentState[NUM_LEDS];
 
 CRGB::HTMLColorCode pinState = CRGB::Black;  
 unsigned long previousMillis = 0;  
 
 void setup() 
 {  
-  FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS); 
+  FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+  lightsOff();
 }
 
 void loop() 
-{  
+{    
+  // para cada leds
+  //   veja o estado atual dele
+  //   se o estado for 0
+  //     defina o rgb para black
+  //   se o estado for 2
+  //     defina o rgb para green
+  //   se o estado for 1
+  //     defina o rgb baseado do currentPinState
+
   CRGB::HTMLColorCode state = currentPinState();
   leds[0] = state;
+
   FastLED.show();
 }
 
@@ -57,4 +69,12 @@ CRGB::HTMLColorCode toggledState(CRGB::HTMLColorCode state)
   }
 
   return pinState;
-} 
+}
+
+void lightsOff() {
+  for(int i = 0; i < NUM_LEDS; i++) {
+    leds[i] = CRGB::Black;
+    ledsCurrentState[i] =
+  }
+  FastLED.show();
+}
